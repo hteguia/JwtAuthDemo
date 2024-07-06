@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 string audience ="jwtauthdemo_audience";
@@ -55,7 +56,7 @@ app.MapGet("/weatherforecast", () =>
             summaries[Random.Shared.Next(summaries.Length)]
         ))
         .ToArray();
-    return forecast;
+    return Results.Ok(forecast);
 })
 .WithName("GetWeatherForecast")
 .RequireAuthorization()
@@ -72,7 +73,7 @@ app.MapGet("/token", () =>
         expires: DateTime.Now.AddMinutes(30),
         signingCredentials: signingCredentials
     );
-    return new JwtSecurityTokenHandler().WriteToken(token);
+    return Results.Ok(new JwtSecurityTokenHandler().WriteToken(token));
 })
 .WithName("GetToken")
 .WithOpenApi();

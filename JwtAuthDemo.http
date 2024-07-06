@@ -1,6 +1,13 @@
 @JwtAuthDemo_HostAddress = http://localhost:5265
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJPcGVyYXRvciIsImV4cCI6MTcyMDI1NjkxNCwiaXNzIjoiand0YXV0aGRlbW9faXNzdWVyIiwiYXVkIjoiand0YXV0aGRlbW9fYXVkaWVuY2UifQ._ZekvzaEMk26RGfHohwCuaA2rad_6F3S6JK2MszPw90
+
+GET {{JwtAuthDemo_HostAddress}}/token/
+Accept: application/json
+
+###
 
 GET {{JwtAuthDemo_HostAddress}}/weatherforecast/
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ###
